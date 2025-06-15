@@ -3,8 +3,7 @@ import HomeProperties from "@/components/HomeProperties";
 import InfoBoxes from "@/components/InfoBoxes";
 import connectDB from "@/config/database";
 
-export default function HomePage() {
-  connectDB();
+export default function HomePage() { 
   return (
     <>
       <Hero />
