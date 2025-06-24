@@ -1,16 +1,33 @@
-"use client"
+import PropertyHeaderImage from "@/components/PropertyHeaderImage";
+import connectDB from "@/config/database"
+import Property from "@/models/Property"
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
-import { useParams, useRouter } from 'next/navigation'
-import React from 'react'
 
-const PropertyPage = () => {
-  const router = useRouter();
-  const params = useParams();
+const PropertyPage = async ({ params }) => {
+  await connectDB();
+  const property = await Property.findById(params.id).lean()
   return (
-    <div>
-      <h1>Property page {params.id}</h1>
-      <button onClick={() => router.replace('/')}>Go Home</button>
-    </div>
+    <>
+      <PropertyHeaderImage image={property.images[0]} />
+
+      <section>
+        <div classNameName="container m-auto py-6 px-6">
+          <Link href="/properties" classNameName="text-blue-500 hover:text-blue-600 flex items-center">
+            <FaArrowLeft classNameName="mr-2" /> Back to Properties
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-blue-50">
+        <div className="container m-auto py-10 px-6">
+          <div className="grid grid-cols-1 md:grid-70-30 w-full gap-6">
+          
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 
