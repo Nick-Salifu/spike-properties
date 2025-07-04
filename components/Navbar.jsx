@@ -12,10 +12,11 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Navbar = () => {
   const { data: session } = useSession();
+  const profileImage = session?.user?.image;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [providers, setProviders] = useState(null)
+  const [providers, setProviders] = useState(null);
 
   const pathname = usePathname();
 
@@ -90,7 +91,7 @@ const Navbar = () => {
           {!session && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
-                { providers && object.values(providers).map((provider, index) => (
+                {providers && Object.values(providers).map((provider, index) => (
                   <button
                     onClick={() => signIn(provider.id)}
                     key={index}
@@ -145,7 +146,13 @@ const Navbar = () => {
                   >
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
-                    <Image className="h-8 w-8 rounded-full" src={profileDefault} alt="profile image"/>
+                    <Image
+                      className="h-8 w-8 rounded-full"
+                      src={profileImage || profileDefault}
+                      width={40}
+                      height={40}
+                      alt="profile image"
+                    />
                   </button>
                 </div>
 
@@ -158,7 +165,13 @@ const Navbar = () => {
                     <Link href="/properties/saved" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">
                         Saved Properties
                     </Link>
-                    <button className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">
+                    <button
+                      onClick={() => {
+                        setIsProfileMenuOpen(false)
+                        signOut()
+                      }}
+                      className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2"
+                    >
                       Sign Out
                     </button>
                   </div>
