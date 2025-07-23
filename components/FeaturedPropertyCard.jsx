@@ -52,11 +52,11 @@ const FeaturedPropertyCard = ({ property }) => {
                     )}
             
                     {property.rates.weekly && (
-                        <p><FaMoneyBil className="inline mr-2"/> Weekly</p>
+                        <p><FaMoneyBill className="inline mr-2"/> Weekly</p>
                     )}
                     
                     {property.rates.monthly && (
-                        <p><FaMoneyBil className="inline mr-2"/> monthly</p>
+                        <p><FaMoneyBill className="inline mr-2"/> monthly</p>
                     )}
                 </div>
 

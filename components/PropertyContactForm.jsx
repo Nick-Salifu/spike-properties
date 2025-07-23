@@ -1,3 +1,5 @@
+'use client'
+
 import { useActionState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import addMessage from "@/app/actions/addMessage";

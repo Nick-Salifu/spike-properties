@@ -6,7 +6,7 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 
 async function markMessageAsRead(messageId) {
-    await connectDB;
+    await connectDB();
     
     const sessionUser = await getSessionUser();
 
