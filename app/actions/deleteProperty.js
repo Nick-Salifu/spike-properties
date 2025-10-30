@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 async function deleteProperty(propertyId) {
     const sessionUser = await getSessionUser();
 
-    if (!sessionUser || sessionUser.userId) {
+    if (!sessionUser || !sessionUser.userId) {
         throw new Error('User ID is required')
     }
 
