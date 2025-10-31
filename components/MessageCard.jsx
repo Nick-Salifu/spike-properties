@@ -17,7 +17,7 @@ const MessageCard = ({ message }) => {
 
         setIsRead(read);
         setUnreadCount((prevCount) => (read ? prevCount - 1 : prevCount + 1));
-        toast.success(`Marked as ${read ? 'Read' : 'New'}`)
+        toast.success(`Marked As ${read ? 'Read' : 'New'}`)
     }
 
     const handleDeleteClick = async () => {
